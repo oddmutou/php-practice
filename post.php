@@ -5,7 +5,7 @@
 <body>
 <?php
 
-$name = empty($_POST['name']) ? "名無し" : $_POST['name'];
+$name = empty($_POST['name']) ? ("名無し" . create_hash()) : $_POST['name'];
 $body = $_POST['body'];
 
 if (empty($body)) {
@@ -29,3 +29,16 @@ echo "<a href='/'>indexへ戻る<a>";
 
 ?>
 </body>
+
+<?php
+function create_hash (){
+    return "(ID: " . substr(
+        hash(
+            "md5",
+            $_SERVER['HTTP_USER_AGENT'] . $_SERVER["REMOTE_ADDR"],
+            false
+        ),
+        0, 8
+    ) . ")";
+}
+?>
