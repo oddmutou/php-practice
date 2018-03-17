@@ -5,7 +5,10 @@
 <body>
 <?php
 
-if (empty($_POST['name']) or empty($_POST['body'])) {
+$name = empty($_POST['name']) ? "名無し" : $_POST['name'];
+$body = $_POST['body'];
+
+if (empty($body)) {
     return http_response_code(403);
 }
 
@@ -16,8 +19,8 @@ $pdo = new PDO(
 
 $stmt = $pdo->prepare('INSERT INTO entry (name, body) VALUES (?, ?)');
 
-$stmt->bindValue(1, $_POST['name'], PDO::PARAM_INT);
-$stmt->bindValue(2, $_POST['body'], PDO::PARAM_INT);
+$stmt->bindValue(1, $name, PDO::PARAM_INT);
+$stmt->bindValue(2, $body, PDO::PARAM_INT);
 
 $stmt->execute();
 

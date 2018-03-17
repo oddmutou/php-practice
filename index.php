@@ -16,7 +16,7 @@
 <div class="form-group row">
     <label for="form-body" class="col-sm-2 col-form-label">本文</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control" id="form-body" name="body">
+        <input type="text" class="form-control" id="form-body" name="body" required>
     </div>
 </div>
 <div class="text-center">
